@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:guide x="250.559" y="277.468" angle="0"/>
+    <bx:guide x="175.643" y="249.905" angle="90"/>
+    <bx:guide x="126.171" y="137.532" angle="0"/>
+    <bx:guide x="384.842" y="107.141" angle="0"/>
+    <bx:guide x="275.295" y="417.405" angle="90"/>
+  </defs>
+  <ellipse style="transform-origin: 0px 291.772px 0px; stroke: rgb(0, 0, 0); fill: rgb(190, 130, 58);" cx="250" cy="250" rx="200" ry="200"/>
+  <rect x="90.412" y="136.825" width="328" height="21.202" style="stroke: rgb(0, 0, 0); stroke-width: 1px; transform-origin: 254.413px 147.426px 0px;" transform="matrix(0.997564, -0.069756, 0.069756, 0.997564, -10.85801, -0.467294)"/>
+  <rect x="70.567" y="136.825" width="256" height="21.202" style="stroke: rgb(0, 0, 0); stroke-width: 1px; transform-origin: 198.567px 147.426px 0px;" transform="matrix(0.000001, -1, 1, 0.000001, -67.455253, 127.045013)"/>
+  <rect x="74.029" y="136.825" width="268.566" height="21.202" style="stroke: rgb(0, 0, 0); stroke-width: 1px; transform-origin: 208.313px 147.426px 0px;" transform="matrix(0.000001, -1, 1, 0.000001, 160.2667, 121.376668)"/>
+</svg>
