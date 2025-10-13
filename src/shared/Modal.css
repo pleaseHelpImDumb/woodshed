@@ -1,0 +1,31 @@
+/* src/shared/Modal.css */
+
+.modal-backdrop {
+  /* Makes the background cover the entire screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  /* Semi-transparent black background */
+  background-color: rgba(0, 0, 0, 0.7);
+
+  /* Puts the modal on top of other content */
+  z-index: 1000;
+
+  /* Uses flexbox to center the content inside */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  /* Your form's container */
+  background-color: #2e2e2e; /* A dark theme background */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px; /* Prevents it from being too wide on large screens */
+}

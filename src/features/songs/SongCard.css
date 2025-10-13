@@ -1,0 +1,34 @@
+.song-card {
+  background-color: #d3b1b1;
+  border-radius: 10px;
+  padding: 30px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 800;
+  color: wheat;
+  text-shadow: 20px;
+}
+
+.song-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 1s ease-out, opacity 0.3s ease-in,
+    margin-top 0.4s ease-out;
+}
+
+.song-card:hover .card-actions {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 1rem;
+}

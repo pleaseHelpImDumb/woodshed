@@ -8,8 +8,8 @@ function GalleryFilters({ gridSize, setGridSize }) {
       <input
         value={gridSize}
         type="range"
-        min="2"
-        max="10"
+        min="1"
+        max="5"
         onChange={(e) => setGridSize(e.target.value)}
       />
       <p>{gridSize}</p>
