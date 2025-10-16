@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Form.css";
 
 function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
   const [title, setTitle] = useState(songToEdit.title);
@@ -30,7 +31,7 @@ function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h3>Edit Song</h3>
+        <h3 className="form-title">Edit Song</h3>
         {art && <img src={art} width={"100%"}></img>}
         <label htmlFor="artInput">Change Art</label>
         <input
@@ -84,13 +85,17 @@ function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
           </div>
         )}
         <br />
-        <button type="submit" className="submitButton">
+        <button
+          type="button"
+          className="cancel-button"
+          onClick={() => onCancel()}
+        >
+          Cancel
+        </button>
+        <button className="submit-button" type="submit">
           Submit
         </button>
       </form>
-      <button type="button" className="cancelButton" onClick={() => onCancel()}>
-        Cancel
-      </button>
     </>
   );
 }

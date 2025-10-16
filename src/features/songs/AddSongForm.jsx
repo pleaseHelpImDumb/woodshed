@@ -1,4 +1,4 @@
-import "./AddSongForm.css";
+import "./Form.css";
 import React, { useState } from "react";
 
 function AddSongForm({ onFormSubmit, onCancel }) {
@@ -39,14 +39,15 @@ function AddSongForm({ onFormSubmit, onCancel }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h3>"Add New Song"</h3>
-        {art && <img src={art} width={"100%"}></img>}
+        <h3 className="form-title">Add New Song</h3>
+
         <label htmlFor="artInput">Change Art</label>
         <input
           type="file"
           accept="image/png, image/jpeg"
           onChange={handleImageChange}
         />
+        {art && <img src={art} width={"50%"}></img>}
         <br />
 
         <label htmlFor="titleInput">Title *</label>
@@ -87,14 +88,17 @@ function AddSongForm({ onFormSubmit, onCancel }) {
         />
         <br />
 
-        <button type="submit" className="submitButton">
+        <button
+          type="button"
+          className="cancel-button"
+          onClick={() => onCancel()}
+        >
+          Cancel
+        </button>
+        <button type="submit" className="submit-button">
           Submit
         </button>
       </form>
-
-      <button type="button" className="cancelButton" onClick={() => onCancel()}>
-        Cancel
-      </button>
     </>
   );
 }

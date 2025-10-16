@@ -1,0 +1,63 @@
+/*
+Colors: 
+Brown: b5835a
+Light Black: 241f31
+*/
+
+
+body {
+    background-color: #b5835a;
+    font-size: 50px;
+    border-style: solid;
+    border-color: #241f31;
+    border-width: 5px;
+    padding: 30px;
+    font-weight: 600;
+    border-radius: 5px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+hr, h1, h2 {
+    color: #241f31;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+
+a {
+    border-style: solid;
+    border-color: #241f31;
+    color: #241f31;
+    border-radius: 5px;
+    border-width: 3px;
+    padding: 10px;
+    margin: 0px;
+    margin-right: 50px;
+    text-decoration: none;
+    font-size: 0.5em;
+}
+
+a:hover, button:hover, select:hover{
+    background-color: #241f31;
+    color: #b5835a;
+}
+
+h1, h2, nav {
+    font-size: 0.75em;
+}
+
+
+button, select, input {
+    padding: 15px;
+    margin: 15px;
+    font-family: 'Nunito-Sans', sans-serif;
+    font-weight: 900;
+    border-color: #241f31;
+    border-radius: 5px;
+    border-width: 3px;
+    background-color: #b5835a;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-basis: 50%; 
+    color: #241f31;
+}

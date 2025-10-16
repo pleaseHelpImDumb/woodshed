@@ -1,5 +1,4 @@
 import SongCard from "./SongCard";
-import "./SongGallery.css";
 
 function SongGallery({
   songs,

@@ -19,7 +19,7 @@ function SongCard({
     backgroundPosition: "center",
   };
   const progressBar = (progress) => {
-    let t = "Progress: ";
+    let t = "";
     for (let i = 0; i < 5; i++) {
       if (i < progress) {
         t = t.concat("★");
@@ -49,12 +49,16 @@ function SongCard({
         style={cardStyle}
       >
         <div className="card-content">
-          <span>Song: {song.title}</span>
+          <span>{song.title}</span>
           <hr />
-          <span>Artist: {song.artist}</span>
-          <hr />
-          <div>{progressBar(song.progress)}</div>
+          {song.artist && (
+            <div>
+              <p>{song.artist}</p>
+              <hr />
+            </div>
+          )}
 
+          <div>{progressBar(song.progress)}</div>
           {song.markedCompleted && (
             <div>
               <p>Completed: {song.completedDate}</p>
@@ -76,8 +80,6 @@ function SongCard({
               )}
             </div>
           )}
-
-          <hr />
           <div>{song.notes}</div>
         </div>
         {!actionsDisabled && (

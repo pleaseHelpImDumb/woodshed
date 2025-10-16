@@ -27,24 +27,26 @@ function Dashboard({ songs }) {
     <div className="dashboard">
       <h1>Dashboard</h1>
       <p>Welcome to Woodshed! Your practice tracking starts here.</p>
-      <hr />
       <p>Maybe it's time to practice some songs?...</p>
-      <span>Give me </span>
-      <select name="" id="" onChange={(e) => setNumSongs(e.target.value)}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-      <span> random songs!</span>
-      <button
-        onClick={() => setRandomSongs(randomSongsPicker(songs, numSongs))}
-      >
-        Go!
-      </button>
-      <SongGallery songs={randomSongs} gridSize={3} actionsDisabled={true} />
-      {numSongs > songs.length && (
-        <p>There are less than {numSongs} songs in the library!</p>
-      )}
+      <div className="randomSongs">
+        <span>Give me </span>
+        <select name="" id="" onChange={(e) => setNumSongs(e.target.value)}>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        <span> random songs to practice!</span>
+        <button
+          onClick={() => setRandomSongs(randomSongsPicker(songs, numSongs))}
+        >
+          Go!
+        </button>
+        <SongGallery songs={randomSongs} gridSize={3} actionsDisabled={true} />
+        {numSongs > songs.length && (
+          <p>There are less than {numSongs} songs in the library!</p>
+        )}
+      </div>
     </div>
   );
 }

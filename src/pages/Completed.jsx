@@ -3,6 +3,8 @@ import SongGallery from "../features/songs/SongGallery";
 import GalleryFilters from "../features/songs/GalleryFilters";
 import Modal from "../shared/Modal";
 import EditSongForm from "../features/songs/EditSongForm";
+import "./SongLibrary.css";
+
 function Completed({
   songs,
   gridSize,
@@ -12,15 +14,12 @@ function Completed({
   markCompleted,
 }) {
   const completedSongs = songs.filter((song) => song.markedCompleted);
-  // State for the Edit Modal
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
   const [songToEdit, setSongToEdit] = useState(null);
-
-  // State for the Delete Modal
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [songToDelete, setSongToDelete] = useState(null);
+  const [optionsVisible, setOptionsVisible] = useState(false);
 
-  // Handlers for Edit Modal
   const handleOpenEditModal = (song) => {
     setSongToEdit(song);
     setIsEditModalVisible(true);
@@ -54,6 +53,14 @@ function Completed({
   return (
     <>
       <h2>Completed Songs</h2>
+      <button onClick={() => setOptionsVisible(!optionsVisible)}>
+        Options
+      </button>
+      <GalleryFilters
+        optionsVisible={optionsVisible}
+        gridSize={gridSize}
+        setGridSize={setGridSize}
+      />
       <SongGallery
         songs={completedSongs}
         gridSize={gridSize}
@@ -87,13 +94,14 @@ function Completed({
             <h3>Are you sure?</h3>
             <p>You are deleting "{songToDelete.title}" from your library.</p>
             <div className="modal-buttons">
-              <button type="button" onClick={handleCloseDeleteModal}>
+              <button
+                className="cancel-button"
+                type="button"
+                onClick={handleCloseDeleteModal}
+              >
                 No, Cancel
               </button>
-              <button
-                className="confirm-delete-button"
-                onClick={handleDeleteConfirm}
-              >
+              <button className="submit-button" onClick={handleDeleteConfirm}>
                 Yes, Delete
               </button>
             </div>

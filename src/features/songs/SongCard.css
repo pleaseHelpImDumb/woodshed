@@ -6,8 +6,7 @@
   transition: box-shadow 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  font-weight: 800;
+  font-family: 'Nunito-Sans', sans-serif; 
   color: wheat;
   text-shadow: 20px;
 }

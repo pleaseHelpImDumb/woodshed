@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import "./CompletionForm.css";
-
 function CompletionForm({ onSubmit, onCancel }) {
   const [completedDate, setCompletedDate] = useState("");
   const [performanceLink, setPerformanceLink] = useState("");
@@ -15,29 +13,40 @@ function CompletionForm({ onSubmit, onCancel }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Mark as Completed</h3>
+      <h3 className="form-title">Mark as Completed</h3>
+      <hr className="form-separator" />
+      <div className="form-field">
+        <label htmlFor="completedDate">Completion Date:</label>
+        <input
+          type="date"
+          id="completedDate"
+          value={completedDate}
+          onChange={(e) => setCompletedDate(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-field">
+        <label htmlFor="performanceLink">Performance Video Link:</label>
+        <input
+          type="url"
+          id="performanceLink"
+          value={performanceLink}
+          onChange={(e) => setPerformanceLink(e.target.value)}
+          placeholder="https://youtube.com/..."
+        />
+      </div>
+      <hr className="form-separator" />
 
-      <label htmlFor="completedDate">Completion Date:</label>
-      <input
-        type="date"
-        id="completedDate"
-        value={completedDate}
-        onChange={(e) => setCompletedDate(e.target.value)}
-        required
-      />
-
-      <label htmlFor="performanceLink">Performance Video (YouTube):</label>
-      <input
-        type="url"
-        id="performanceLink"
-        value={performanceLink}
-        onChange={(e) => setPerformanceLink(e.target.value)}
-        placeholder="https://youtube.com/..."
-      />
-      <button type="button" onClick={() => onCancel()}>
+      <button
+        className="cancel-button"
+        type="button"
+        onClick={() => onCancel()}
+      >
         Cancel
       </button>
-      <button type="submit">Complete Song</button>
+      <button type="submit" className="submit-button">
+        Complete Song
+      </button>
     </form>
   );
 }
