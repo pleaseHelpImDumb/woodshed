@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # This should be the folder your build command outputs to
-          path: "./dist" # For Vite, this would be './dist'
+          path: "./build" # For Vite, this would be './dist'
 
       - name: Deploy to GitHub Pages 🚀
         id: deployment
