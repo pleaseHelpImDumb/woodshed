@@ -1,12 +1,14 @@
 import "./Form.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { db } from "../../db";
 
 function AddSongForm({ onFormSubmit, onCancel }) {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [progress, setProgress] = useState(0);
   const [notes, setNotes] = useState("");
-  const [art, setArt] = useState();
+  const [art, setArt] = useState(null);
+  const [artPreviewURL, setArtPreviewURL] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,17 +26,40 @@ function AddSongForm({ onFormSubmit, onCancel }) {
     onFormSubmit(newSong);
   };
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     const file = event.target.files[0];
+    if (!file) return;
+
+    const newPreviewUrl = URL.createObjectURL(file);
+    setArtPreviewURL(newPreviewUrl);
+
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        // When the reader is done, the result is the Base64 string
-        setArt(reader.result);
-      };
-      reader.readAsDataURL(file); // This starts the reading process
+      const imageId = `art-${file.name}-${file.size}`;
+      try {
+        const existingImage = await db.images.get(imageId);
+        if (existingImage) {
+          await db.images.update(imageId, {
+            refCount: existingImage.refCount + 1,
+          });
+          console.log(`Incremented refCount for ${imageId}`);
+        } else {
+          await db.images.put({ id: imageId, file: file, refCount: 1 });
+          console.log(`Added new image ${imageId} with refCount of 1`);
+        }
+        setArt(imageId);
+      } catch (err) {
+        console.error("Could not save image to Dexie:", err);
+      }
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (artPreviewURL) {
+        URL.revokeObjectURL(artPreviewURL);
+      }
+    };
+  }, [artPreviewURL]);
 
   return (
     <>
@@ -43,11 +68,14 @@ function AddSongForm({ onFormSubmit, onCancel }) {
 
         <label htmlFor="artInput">Change Art</label>
         <input
+          id="artInput"
           type="file"
           accept="image/png, image/jpeg"
           onChange={handleImageChange}
         />
-        {art && <img src={art} width={"50%"}></img>}
+        {art && (
+          <img src={artPreviewURL} width={"50%"} alt="Album art preview"></img>
+        )}
         <br />
 
         <label htmlFor="titleInput">Title *</label>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
+import { db } from "./db";
 import Navigation from "./shared/Navigation";
 import Dashboard from "./pages/Dashboard";
 import SongLibrary from "./pages/SongLibrary";
@@ -7,11 +8,16 @@ import Completed from "./pages/Completed";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import "./App.css";
+
 function App() {
   const [songs, setSongs] = useState([]);
   const [isFirstRender, setIsFirstRender] = useState(true);
   const [gridSize, setGridSize] = useState(3);
-  const [sorting, setSorting] = useState({ key: "title", direction: "asc" });
+  const [cardHeight, setCardHeight] = useState(300);
+  const [sorting, setSorting] = useState({
+    key: "title",
+    direction: "asc",
+  });
 
   useEffect(() => {
     const savedSongs = localStorage.getItem("woodshed-songs");
@@ -32,9 +38,32 @@ function App() {
     setSongs((prev) => [...prev, songData]);
   }, []);
 
-  const deleteSong = (songIdDelete) => {
+  const deleteSong = async (songIdToDelete) => {
+    const songToDelete = songs.find((song) => song.id === songIdToDelete);
+
+    if (songToDelete && songToDelete.art) {
+      try {
+        const image = await db.images.get(songToDelete.art);
+        if (image) {
+          if (image.refCount > 1) {
+            await db.images.update(songToDelete.art, {
+              refCount: image.refCount - 1,
+            });
+            console.log(`Decremented refCount for ${songToDelete.art}`);
+          } else {
+            await db.images.delete(songToDelete.art);
+            console.log(
+              `Deleted image ${songToDelete.art} as refCount reached 0`
+            );
+          }
+        }
+      } catch (err) {
+        console.error("Failed to update/delete art from IndexedDB:", err);
+      }
+    }
+
     setSongs((prevSongs) =>
-      prevSongs.filter((song) => song.id !== songIdDelete)
+      prevSongs.filter((song) => song.id !== songIdToDelete)
     );
   };
 
@@ -107,6 +136,8 @@ function App() {
                 markCompleted={toggleSongCompletion}
                 gridSize={gridSize}
                 setGridSize={setGridSize}
+                cardHeight={cardHeight}
+                setCardHeight={setCardHeight}
                 deleteSong={deleteSong}
                 editSong={editSong}
                 sorting={sorting}
@@ -122,6 +153,8 @@ function App() {
                 markCompleted={toggleSongCompletion}
                 gridSize={gridSize}
                 setGridSize={setGridSize}
+                cardHeight={cardHeight}
+                setCardHeight={setCardHeight}
                 deleteSong={deleteSong}
                 editSong={editSong}
                 sorting={sorting}

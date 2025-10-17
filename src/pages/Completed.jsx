@@ -9,9 +9,13 @@ function Completed({
   songs,
   gridSize,
   setGridSize,
+  cardHeight,
+  setCardHeight,
   deleteSong,
   editSong,
   markCompleted,
+  sorting,
+  setSorting,
 }) {
   const completedSongs = songs.filter((song) => song.markedCompleted);
   const [isEditModalVisible, setIsEditModalVisible] = useState(false);
@@ -52,18 +56,29 @@ function Completed({
   };
   return (
     <>
-      <h2>Completed Songs</h2>
-      <button onClick={() => setOptionsVisible(!optionsVisible)}>
-        Options
-      </button>
-      <GalleryFilters
-        optionsVisible={optionsVisible}
-        gridSize={gridSize}
-        setGridSize={setGridSize}
-      />
+      <div className="page-header">
+        <h2 className="header-title">Completed Songs</h2>
+        <button
+          className="completed-options-btn"
+          onClick={() => setOptionsVisible(!optionsVisible)}
+        >
+          Options
+        </button>
+        <GalleryFilters
+          optionsVisible={optionsVisible}
+          gridSize={gridSize}
+          setGridSize={setGridSize}
+          cardHeight={cardHeight}
+          setCardHeight={setCardHeight}
+          sorting={sorting}
+          setSorting={setSorting}
+        />
+      </div>
+
       <SongGallery
         songs={completedSongs}
         gridSize={gridSize}
+        cardHeight={cardHeight}
         message="No songs completed... yet!"
         deleteSong={deleteSong}
         editSong={editSong}
@@ -73,7 +88,6 @@ function Completed({
         onOpenDeleteModal={handleOpenDeleteModal}
       />
 
-      {/* SINGLE Edit Modal */}
       {songToEdit && (
         <Modal formVisible={isEditModalVisible} onClose={handleCloseEditModal}>
           <EditSongForm
@@ -84,7 +98,6 @@ function Completed({
         </Modal>
       )}
 
-      {/* SINGLE Delete Modal */}
       {songToDelete && (
         <Modal
           formVisible={isDeleteModalVisible}
@@ -108,10 +121,6 @@ function Completed({
           </div>
         </Modal>
       )}
-      <GalleryFilters
-        gridSize={gridSize}
-        setGridSize={setGridSize}
-      ></GalleryFilters>
     </>
   );
 }

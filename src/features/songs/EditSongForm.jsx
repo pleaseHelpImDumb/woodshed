@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { db } from "../../db";
 import "./Form.css";
 
 function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
@@ -9,30 +10,90 @@ function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
   const [performanceLink, setPerformanceLink] = useState(
     songToEdit.performanceLink
   );
-  const [art, setArt] = useState(null);
+  const [art, setArt] = useState(songToEdit.art);
+  const [artPreviewURL, setArtPreviewURL] = useState(null);
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    const loadInitialPreview = async () => {
+      if (songToEdit.art) {
+        try {
+          const imageRecord = await db.images.get(songToEdit.art);
+          if (imageRecord && imageRecord.file) {
+            const objectUrl = URL.createObjectURL(imageRecord.file);
+            setArtPreviewURL(objectUrl);
+          }
+        } catch (err) {
+          console.error("Could not load initial preview image:", err);
+        }
+      }
+    };
+    loadInitialPreview();
+  }, [songToEdit.art]);
+
+  useEffect(() => {
+    return () => {
+      if (artPreviewURL) {
+        URL.revokeObjectURL(artPreviewURL);
+      }
+    };
+  }, [artPreviewURL]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onFormSubmit({ title, artist, progress, notes, performanceLink, art });
+    if (songToEdit.art && art !== songToEdit.art) {
+      console.log(`Deleting old image: ${songToEdit.art}`);
+      try {
+        await db.images.delete(songToEdit.art);
+      } catch (err) {
+        console.error("Failed to delete old image:", err);
+      }
+    }
+
+    onFormSubmit({
+      ...songToEdit,
+      title,
+      artist,
+      progress,
+      notes,
+      performanceLink,
+      art,
+    });
   };
 
-  const handleImageChange = (event) => {
+  const handleImageChange = async (event) => {
     const file = event.target.files[0];
+    if (!file) return;
+
+    const newPreviewUrl = URL.createObjectURL(file);
+    setArtPreviewURL(newPreviewUrl);
+
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        // When the reader is done, the result is the Base64 string
-        setArt(reader.result);
-      };
-      reader.readAsDataURL(file); // This starts the reading process
+      const imageId = `art-${file.name}-${file.size}`;
+      try {
+        const existingImage = await db.images.get(imageId);
+        if (existingImage) {
+          await db.images.update(imageId, {
+            refCount: existingImage.refCount + 1,
+          });
+          console.log(`Incremented refCount for ${imageId}`);
+        } else {
+          await db.images.put({ id: imageId, file: file, refCount: 1 });
+          console.log(`Added new image ${imageId} with refCount of 1`);
+        }
+        setArt(imageId);
+      } catch (err) {
+        console.error("Could not save image to Dexie:", err);
+      }
     }
   };
-
   return (
     <>
       <form onSubmit={handleSubmit}>
         <h3 className="form-title">Edit Song</h3>
-        {art && <img src={art} width={"100%"}></img>}
+        <label htmlFor="artInput">Change Art</label>
+        {art && (
+          <img src={artPreviewURL} width={"50%"} alt="Album art preview"></img>
+        )}
         <label htmlFor="artInput">Change Art</label>
         <input
           type="file"

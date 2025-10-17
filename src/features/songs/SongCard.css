@@ -1,14 +1,13 @@
 .song-card {
-  background-color: #d3b1b1;
+  background-color: #ffffff;
   border-radius: 10px;
   padding: 30px;
-  overflow: hidden;
   transition: box-shadow 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: "Nunito-Sans", sans-serif;
 
-  font-family: 'Nunito-Sans', sans-serif; 
-  color: wheat;
-  text-shadow: 20px;
+  min-width: 0;
+  height: 200;
 }
 
 .song-card:hover {
@@ -27,7 +26,7 @@
 }
 
 .song-card:hover .card-actions {
-  max-height: 200px;
+  max-height: 300px;
   opacity: 1;
   margin-top: 1rem;
 }

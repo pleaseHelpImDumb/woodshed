@@ -13,6 +13,8 @@ function SongLibrary({
   markCompleted,
   gridSize,
   setGridSize,
+  cardHeight,
+  setCardHeight,
   deleteSong,
   editSong,
   sorting,
@@ -89,22 +91,30 @@ function SongLibrary({
 
   return (
     <>
-      <h2>Song Library</h2>
-      <button onClick={() => setFormVisible(true)}>+ Add Song</button>
-      <Modal formVisible={formVisible} onClose={handleCloseModal}>
-        <AddSongForm onFormSubmit={handleAddSong} onCancel={handleCloseModal} />
-      </Modal>
+      <div className="page-header">
+        <h2 className="header-title">Song Library</h2>
+        <button onClick={() => setFormVisible(true)}>+ Add Song</button>
+        <Modal formVisible={formVisible} onClose={handleCloseModal}>
+          <AddSongForm
+            onFormSubmit={handleAddSong}
+            onCancel={handleCloseModal}
+          />
+        </Modal>
 
-      <button onClick={() => setOptionsVisible(!optionsVisible)}>
-        Options
-      </button>
-      <GalleryFilters
-        optionsVisible={optionsVisible}
-        gridSize={gridSize}
-        setGridSize={setGridSize}
-        sorting={sorting}
-        setSorting={setSorting}
-      />
+        <button onClick={() => setOptionsVisible(!optionsVisible)}>
+          Options
+        </button>
+        <GalleryFilters
+          className="header-options"
+          optionsVisible={optionsVisible}
+          gridSize={gridSize}
+          setGridSize={setGridSize}
+          sorting={sorting}
+          setSorting={setSorting}
+          cardHeight={cardHeight}
+          setCardHeight={setCardHeight}
+        />
+      </div>
 
       <SongGallery
         songs={uncompletedSongs}
@@ -112,6 +122,7 @@ function SongLibrary({
         onOpenDeleteModal={handleOpenDeleteModal}
         onOpenCompleteModal={handleOpenCompleteModal}
         gridSize={gridSize}
+        cardHeight={cardHeight}
         markCompleted={markCompleted}
         message="Add a song and start practicing!"
         deleteSong={deleteSong}

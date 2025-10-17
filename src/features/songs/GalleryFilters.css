@@ -13,6 +13,8 @@
 
   padding: 20px;
   margin: 20px;
+
+  grid-column: 1 / -1;
 }
 
 .gallery-filters.hidden {
@@ -25,14 +27,14 @@
   opacity: 1;
 }
 
-
-.options-title{
+.options-title {
   text-align: left;
-  font-size:30px;
+  font-size: 30px;
   margin: 0px;
 }
 
-.filter, .options-label{
+.filter,
+.options-label {
   color: #241f31;
 }
 

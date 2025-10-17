@@ -3,6 +3,7 @@ import SongCard from "./SongCard";
 function SongGallery({
   songs,
   gridSize,
+  cardHeight,
   markCompleted,
   message,
   deleteSong,
@@ -16,12 +17,13 @@ function SongGallery({
     display: "grid",
     gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
     gap: "20px",
+    alignItems: "start",
   };
 
   return (
     <>
       {songs.length === 0 ? (
-        <p>{message}</p>
+        <p className="general-msg">{message}</p>
       ) : (
         <div className="songGrid" style={gridStyle}>
           {songs.map((song) => (
@@ -30,6 +32,7 @@ function SongGallery({
               song={song}
               markCompleted={markCompleted}
               gridSize={gridSize}
+              cardHeight={cardHeight}
               deleteSong={deleteSong}
               editSong={editSong}
               actionsDisabled={actionsDisabled}
