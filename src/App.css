@@ -1,42 +1,78 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/*
+Colors: 
+Brown: b5835a
+Darker brown: 4d3827
+Light Black: 241f31
+*/
+html {
+  background-color: #4d3827;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background-color: #b5835a;
+  font-size: 50px;
+  border-style: solid;
+  border-color: #241f31;
+  border-width: 5px;
+  padding: 30px;
+  font-weight: 600;
+  border-radius: 5px;
+  font-family: "Nunito Sans", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+hr,
+h1,
+h2 {
+  color: #241f31;
+  font-family: "Nunito Sans", sans-serif;
 }
 
-.card {
-  padding: 2em;
+a {
+  border-style: solid;
+  border-color: #241f31;
+  color: #241f31;
+  border-radius: 5px;
+  border-width: 3px;
+  padding: 10px;
+  margin: 0px;
+  margin-right: 50px;
+  text-decoration: none;
+  font-size: 0.5em;
 }
 
-.read-the-docs {
-  color: #888;
+a:hover,
+button:hover,
+select:hover {
+  background-color: #241f31;
+  color: #b5835a;
+}
+
+h1,
+h2,
+nav {
+  font-size: 0.75em;
+  margin: 0px;
+}
+
+button,
+select,
+input {
+  padding: 15px;
+  margin: 15px;
+  font-family: "Nunito-Sans", sans-serif;
+  font-weight: 900;
+  border-color: #241f31;
+  border-radius: 5px;
+  border-width: 3px;
+  background-color: #b5835a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-basis: 50%;
+  color: #241f31;
+}
+.general-msg {
+  color: #241f31;
+  font-size: 20px;
+  font-weight: 700;
 }
