@@ -13,6 +13,9 @@ function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
   const [art, setArt] = useState(songToEdit.art);
   const [artPreviewURL, setArtPreviewURL] = useState(null);
 
+  /*
+   * This function handles updating the DB and loading an image for editing a song card
+   */
   useEffect(() => {
     const loadInitialPreview = async () => {
       if (songToEdit.art) {
@@ -30,6 +33,9 @@ function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
     loadInitialPreview();
   }, [songToEdit.art]);
 
+  /*
+   * Cleanup Function for artPreviewURL
+   */
   useEffect(() => {
     return () => {
       if (artPreviewURL) {
@@ -60,6 +66,9 @@ function EditSongForm({ songToEdit, onFormSubmit, onCancel }) {
     });
   };
 
+  /*
+   * This function handles image changing, including setting the preview in the form, and updating the DB accordingly
+   */
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
     if (!file) return;

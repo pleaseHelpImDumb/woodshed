@@ -14,11 +14,11 @@ Woodshed helps musicians organize their practice routine by providing tools to:
 
 ## Features
 
-- **Song Library Management**: Add, edit, and organize songs with detailed metadata
+- **Song Library Management**: Add, edit, and organize songs
 - **Progress Tracking**: Visual 5-stage progress system for each song
 - **Recordings**: Upload audio or video recordings when you master a song
-- **Notes & Resources**: Add practice notes and links to tabs/tutorials for each song
-- **Filtering & Sorting**: Organize songs by difficulty, progress, date added, and more
+- **Notes & Resources**: Add practice notes for each song
+- **Filtering & Sorting**: Organize songs by title or progress
 - **Completed Gallery**: Showcase your mastered songs with performance recordings
 
 ## Technologies Used
@@ -26,7 +26,7 @@ Woodshed helps musicians organize their practice routine by providing tools to:
 - **React** - UI library
 - **React Router** - Client-side routing
 - **Vite** - Build tool and development server
-- **LocalStorage** - Browser-based data persistence
+- **Dexie.js** - Minimalistic Wrapper for IndexedDB
 
 ## Installation & Setup
 
@@ -57,12 +57,7 @@ npm run dev
 ```
 
 4. Open your browser to the link
-   s
 
 ## Acknowledgments
 
 Built as a final project for Code the Dream's React course.
-
----
-
-**Note**: This app stores all data locally in your browser.

@@ -56,7 +56,7 @@ function SongCard({
   };
   const notesParagraphStyle = {
     overflowWrap: "break-word",
-    wordWrap: "break-word", // Older property for better compatibility
+    wordWrap: "break-word",
   };
   const progressBar = (progress) => {
     let t = "";
@@ -81,6 +81,12 @@ function SongCard({
     return url;
   };
 
+  /*
+   * This useEffect does two things:
+   * 1: Analyzes the song card backgroundimage using canvas to
+   *    determine color to help set font color for contrast (AI helped with this!)
+   * 2: Loads the image from the DB
+   */
   useEffect(() => {
     let objectUrl = null;
 

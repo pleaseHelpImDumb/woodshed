@@ -56,7 +56,8 @@ nav {
 
 button,
 select,
-input {
+input,
+a {
   padding: 15px;
   margin: 15px;
   font-family: "Nunito-Sans", sans-serif;
@@ -70,6 +71,7 @@ input {
   transition: background-color 0.3s ease;
   flex-basis: 50%;
   color: #241f31;
+  text-align: center;
 }
 .general-msg {
   color: #241f31;

@@ -19,6 +19,10 @@ function GalleryFilters({
     }
   };
 
+  /*
+   * This useEffect is called only once to determine
+   * if the user is on mobile or not and sets the maxgrid accordingly
+   */
   useEffect(() => {
     updateMaxGrid();
     window.addEventListener("resize", updateMaxGrid);

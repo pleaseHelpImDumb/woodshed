@@ -26,6 +26,9 @@ function AddSongForm({ onFormSubmit, onCancel }) {
     onFormSubmit(newSong);
   };
 
+  /*
+   * This function handles image changing, including setting the preview in the form, and updating the DB accordingly
+   */
   const handleImageChange = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -53,6 +56,9 @@ function AddSongForm({ onFormSubmit, onCancel }) {
     }
   };
 
+  /*
+   * Cleanup Function for artPreviewURL
+   */
   useEffect(() => {
     return () => {
       if (artPreviewURL) {

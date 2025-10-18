@@ -50,7 +50,9 @@ function Dashboard({ songs }) {
           actionsDisabled={true}
         />
         {numSongs > songs.length && (
-          <p>There are less than {numSongs} songs in the library!</p>
+          <p className="general-msg">
+            There are less than {numSongs} songs in the library!
+          </p>
         )}
       </div>
     </div>
