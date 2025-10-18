@@ -1,4 +1,4 @@
-import SongGallery from "../features/songs/SongGallery";
+import SongGallery from "../features/songGallery/SongGallery";
 import { useState } from "react";
 
 function Dashboard({ songs }) {

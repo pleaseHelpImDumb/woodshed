@@ -1,9 +1,9 @@
-import AddSongForm from "../features/songs/AddSongForm";
-import SongGallery from "../features/songs/SongGallery";
-import GalleryFilters from "../features/songs/GalleryFilters";
+import AddSongForm from "../features/songManagement/AddSongForm";
+import SongGallery from "../features/songGallery/SongGallery";
+import GalleryFilters from "../features/songGallery/GalleryFilters";
 import Modal from "../shared/Modal";
-import EditSongForm from "../features/songs/EditSongForm";
-import CompletionForm from "../features/songs/CompletionForm";
+import EditSongForm from "../features/songManagement/EditSongForm";
+import CompletionForm from "../features/songManagement/CompletionForm";
 
 import { useState } from "react";
 
