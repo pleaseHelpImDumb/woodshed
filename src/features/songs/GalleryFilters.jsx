@@ -13,7 +13,7 @@ function GalleryFilters({
   const [maxGrid, setMaxGrid] = useState(5);
   const updateMaxGrid = () => {
     if (window.innerWidth < 900) {
-      setMaxGrid(3);
+      setMaxGrid(2);
     } else {
       setMaxGrid(5);
     }
