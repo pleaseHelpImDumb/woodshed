@@ -1,4 +1,5 @@
 import "./GalleryFilters.css";
+import { useState, useEffect } from "react";
 
 function GalleryFilters({
   gridSize,
@@ -9,6 +10,22 @@ function GalleryFilters({
   cardHeight,
   setCardHeight,
 }) {
+  const [maxGrid, setMaxGrid] = useState(5);
+  const updateMaxGrid = () => {
+    if (window.innerWidth < 900) {
+      setMaxGrid(3);
+    } else {
+      setMaxGrid(5);
+    }
+  };
+
+  useEffect(() => {
+    updateMaxGrid();
+    window.addEventListener("resize", updateMaxGrid);
+    return () => {
+      window.removeEventListener("resize", updateMaxGrid);
+    };
+  }, []);
   return (
     <div className={`gallery-filters ${optionsVisible ? "visible" : "hidden"}`}>
       <h3 className="options-title">Options & Sorting</h3>
@@ -54,7 +71,7 @@ function GalleryFilters({
           value={gridSize}
           type="range"
           min="1"
-          max="5"
+          max={maxGrid}
           onChange={(e) => setGridSize(e.target.value)}
         />
       </div>

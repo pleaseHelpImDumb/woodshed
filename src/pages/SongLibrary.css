@@ -17,3 +17,9 @@
 .completed-options-btn {
   grid-column: 3;
 }
+
+@media (width < 900px) {
+  .page-header {
+    grid-template-columns: 1fr 1fr;
+  }
+}
