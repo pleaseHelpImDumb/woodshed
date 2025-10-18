@@ -1,8 +1,8 @@
 import { useState } from "react";
-import SongGallery from "../features/songs/SongGallery";
-import GalleryFilters from "../features/songs/GalleryFilters";
+import SongGallery from "../features/songGallery/SongGallery";
+import GalleryFilters from "../features/songGallery/GalleryFilters";
 import Modal from "../shared/Modal";
-import EditSongForm from "../features/songs/EditSongForm";
+import EditSongForm from "../features/songManagement/EditSongForm";
 import "./SongLibrary.css";
 
 function Completed({
