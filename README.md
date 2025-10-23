@@ -2,6 +2,8 @@
 
 A practice tracking application for musicians to manage their repertoire, track progress on songs, and log practice sessions.
 
+## Check it out here: https://pleasehelpimdumb.github.io/woodshed/
+
 ## About
 
 Woodshed helps musicians organize their practice routine by providing tools to:
